@@ -1,0 +1,7 @@
+name	rank	email	username	password	date	chit_type	favorite_exercise
+Nelson, Dylan	1/C	m274608@usna.edu	dilly	Dilly5	Sep05	None	push-ups, plank, squats
+Mallory, John	1/C	m274050@usna.edu	JM	Jm7	Sep19	Light Duty	pullups
+Jullian, Gabbidon	1/C	m277867@usan.edu	JG	bBall15	Sep12	Upper Body	jumping jacks
+Rostomily, Cooper	1/C	m274733@usna.edu	big_christmas	Gruber69	Sep05	None	Naps
+Dixon, Chase	2/C	m273333@usna.edu	dixon	Dixon757	Sep05	None	Bench Press
+Nelson, Eric	1/C	m277679@usna.edu	dill757	D5d	Sep05	Light Duty	cleans
