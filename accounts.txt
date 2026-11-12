@@ -1,3 +1,4 @@
 email	password
 coop@r	$2y$10$HQNQMilMp5Ez6vexIbd7UewqZ2hgc75v86HkrpE0gD5hlOTbEABlS
 matt@g	$2y$10$.9os6e.sVKdAbyHC9SKJ7uriPO42O4JetEAyEnyjV2aMqCY1kkyJi
+john@m	$2y$10$.6qxZ62ZnOlqg863mKmRI.d5rDmnSigAOjv6lYbpqyrYHCsfiWQSa
