@@ -59,15 +59,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="https://www.usna.edu/CS/" class="btn btn-primary mt-2">CS Dept Home</a>
-
-    <div class="navbar-nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="Surfboards.html">Surfboards</a>
-        <a class="nav-link" href="login.html">Login</a>
-        <a class="nav-link" href="logout.php">Logout</a>
-        <a class="nav-link" href="contactus.html">Contact Us</a>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="/~m274608/SI350/project/index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/~m274608/SI350/project/Surfboards.html">Surfboards</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/~m274608/SI350/project/login.html">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/~m274608/SI350/project/logout.php">Logout</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/~m274608/SI350/project/contactus.html">Contact Us</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container mt-5">

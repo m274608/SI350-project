@@ -20,6 +20,7 @@ $boards = [
     8 => "Performance Board",
     9 => "Mid-size Board"
 ];
+// https://www.php.net/manual/en/language.types.array.php
 
 $prices = [
     "1 Day" => 50,
@@ -30,6 +31,8 @@ $prices = [
 $board = $_POST['board'] ?? ($_GET['board'] ?? '');
 $time = $_POST['time'] ?? '';
 $date = $_POST['date'] ?? '';
+$datetime = DateTime::createFromFormat('!Y-m-d', $date);
+// https://www.geeksforgeeks.org/php/php-datetime-createfromformat-function/
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -41,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Select rental length!";
     }
 
-    if (empty($date) || !DateTime::createFromFormat('!Y-m-d', $date)
-        || DateTime::createFromFormat('!Y-m-d', $date)->format('Y-m-d') !== $date
+    if (empty($date) || !$datetime
+        || $datetime->format('Y-m-d') !== $date
         || $date < date('Y-m-d')) {
         $errors[] = "Select a valid future rental date!";
     }

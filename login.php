@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         session_regenerate_id(true);
         $_SESSION['email'] = $email;
+        // https://www.php.net/manual/en/function.session-regenerate-id.php
 
         header("Location: rent.php");
         exit;

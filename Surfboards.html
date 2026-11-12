@@ -32,6 +32,26 @@
   </div>
 </nav>
 
+
+//search bar of rentals
+<input type="text" id="locationBox" onkeyup="showHint()">
+<p>Suggestions: <span id="txtHint"></span></p>
+
+<script>
+  function showHint() {
+    const inputValue = document.getElementById("locationBox").value;
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      document.getElementById("txtHint").innerHTML = xhttp.responseText;
+    };
+
+    xhttp.open("GET", "search.php");
+    xhttp.send();
+  }
+</script>
+
+
 <div class="container mt-4">
 
     <div class="row text-center">
