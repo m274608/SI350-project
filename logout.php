@@ -12,6 +12,3 @@ unset($_SESSION['email']);
 echo "You have been logged out.";
 echo "<br><a href='login.html'>Go to Login</a>";
 ?>
-
-
-

@@ -1,0 +1,4 @@
+email	board_id	board_name	duration	start_date	price
+matt@g	2	Longboard	3 Days	2026-11-20	100
+coop@r	2	Longboard	1 Day	2026-11-20	50
+coop@r	1	Shortboard	3 Days	2026-11-20	100
