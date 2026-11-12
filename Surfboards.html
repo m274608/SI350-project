@@ -37,19 +37,57 @@
    <h2>Search Surfboards</h2>
 <input type="text" id="searchBox" onkeyup="showHint()">
 <p>Suggestions: <span id="txtHint"></span></p>
+<table>
+  <thead>
+    <tr>
+      <th>Board Type</th>
+      <th>Board Name</th>
+  
+    </tr>
+  </thead>
+  <tbody id = "schoolbody">
 
+  </tbody>
+</table>
 <script>
-  function showHint() {
-    const inputValue = document.getElementById("locationBox").value;
+  async function showHint() {
+    const tableBody = document.getElementById("schoolbody");
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-      document.getElementById("txtHint").innerHTML = xhttp.responseText;
-    };
+    tableBody.textContent = "";
 
-    xhttp.open("GET", "search.php");
-    xhttp.send();
-  }
+    const inputval = document.getElementById("searchBox");
+
+    const user = inputval.value.trim().toUpperCase();
+    
+
+  
+
+    const inputValue = await fetch("sugest.php?q=" + encodeURIComponent(user)); 
+
+    const data = await inputValue.json();
+
+    
+    console.log("selected vals", data);
+
+    const list = document.createElement("ul");
+
+    const items = Object.values(data).slice(0,20);
+    items.forEach((acaclass) => {
+      
+      console.log(acaclass);
+      const row = document.createElement("tr");
+      const CellNum = document.createElement("td");
+      CellNum.textContent = acaclass["Surfboard Type"];
+
+      const cellTitle = document.createElement("td");
+      cellTitle.textContent = acaclass["Board Name"]
+
+      row.appendChild(CellNum);
+      row.appendChild(cellTitle);
+
+      tableBody.appendChild(row);
+  });
+}
 </script>
 
 
