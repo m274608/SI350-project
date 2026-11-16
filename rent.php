@@ -6,6 +6,25 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+
+function rentalRange($startStr, $durationStr) {
+$days  = (int)$durationStr;
+$start = new DateTime($startStr);
+$end   = (clone $start)->modify("+$days days");
+return [$start, $end];
+}
+function dates($date){
+    if($date === "1 Day"){
+        return 1;
+    }
+    if($date === "3 Days"){
+        return 3;
+    }
+    if($date === "1 Week"){
+        return 7;
+    }
+}
+
 $errors = [];
 $success = false;
 
@@ -56,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = $prices[$time];
 
         $file = "rentals.txt";
+  
 
 
     if (!file_exists($file) || filesize($file) == 0) {
@@ -71,8 +91,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         file_put_contents($file, $header, FILE_APPEND | LOCK_EX);
     }
+  
+    if (file_exists("rentals.txt")){
+    $log_file = "rentals.txt"; 
+    $lines = file($log_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    [$inpstart, $inpend] = rentalRange($date, dates($time));
+    foreach($lines as $index => $line){
+    if ($index ===0 ){continue;}
+      $columns = explode("\t", trim($line));
+      $boardid = trim($columns[1] ?? "");
+      $boarddur = dates(trim($columns[3] ?? ""));
+      $boardstart = trim($columns[4] ?? "");
+      [$linestart,$lineend] = rentalRange($boardstart,$boarddur);
+        $sameBoard = ($boardid === (string)$board);
+        $overlaps = ($inpstart < $lineend && $inpend > $linestart);
+      if ($sameBoard &&  $overlaps){
+        $errors[] = "Please select different date this board is booked during the time you selected.";
+        break;
+      }
+    }
 
-    $log_entry = implode("\t", [
+
+if (empty($errors)){
+        $log_entry = implode("\t", [
         $_SESSION['email'],
         $board,
         $boardName,
@@ -80,15 +121,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $date,
         $price
     ]) . PHP_EOL;
-
     if (file_put_contents($file, $log_entry, FILE_APPEND | LOCK_EX) !== false) {
         $success = true;
     } else {
         $errors[] = "Unable to save rental.";
     }
-
     }
-}
+    }
+}}
 ?>
 
 <!DOCTYPE html>
