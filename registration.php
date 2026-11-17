@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     if (!file_exists($file) || filesize($file) == 0) {
-        $header = implode("\t", ["email", "password"]) . PHP_EOL;
+        $header = implode("\t", ["email", "password", "admin", "status"]) . PHP_EOL;
         file_put_contents($file, $header, FILE_APPEND | LOCK_EX);
     }
 
@@ -36,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $log_entry = implode("\t", [
             $email,
-            password_hash($password, PASSWORD_DEFAULT)
+            password_hash($password, PASSWORD_DEFAULT),
+            "non-admin",
+            "active"
         ]) . PHP_EOL;
 
         file_put_contents($file, $log_entry, FILE_APPEND | LOCK_EX);
@@ -98,6 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="password" placeholder="Password" class="form-control mb-3" required>
 
         <button class="btn btn-primary">Register</button>
+
+        <input type="hidden" name="board" value="<?php echo (int)$board; ?>">
+       
+
 
     </form>
 
