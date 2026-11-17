@@ -69,14 +69,18 @@ array_multisort($sort_column, SORT_ASC, $data);}
 echo "<b>Details on how everyone's accounts";
 
 echo "<div class='table-responsive'>";
-echo "<table class = 'table' border = '1' cellpadding = '5' cellspacing = '0'>";
+echo "<table id='userTable' class = 'table' border = '1' cellpadding = '5' cellspacing = '0'>";
 echo "<tr><th>Email</th><th>Date</th><th>admin</th><th>Status</th>";
 foreach($data as $row){
     echo "<tr>";
     echo "<td>". htmlspecialchars($row['email'] ?? '') . "</td>";
-    echo "<td>". htmlspecialchars($row['admin'] ?? '') . "</td>";
-    echo "<td>". htmlspecialchars($row['status'] ?? '') . "</td>";
-
+    echo "<td class = 'role'>". htmlspecialchars($row['admin'] ?? '') . "</td>";
+    echo "<td class='status'>". htmlspecialchars($row['status'] ?? '') . "</td>";
+    echo "<td>";
+    echo "<button class='btn btn-sm btn-warning js-action' data-action=" echo $row['status'] === 'active' ? 'disable' : 'enable';">"
+    echo $row['status'] === 'active' ? 'Disable' : 'Enable';
+    "</button>"
+    "<span class =msg ms-2></span>"
 }
 echo "</table>";
 echo"</div>";
@@ -88,8 +92,15 @@ exit;
 
 }
 else{
- echo "Login <a href = 'https://midn.cs.usna.edu/~m272058/SI350/Lab07/login.php'>here</a>";
+ echo "Login <a class='nav-link' href='/~m274608/SI350/project/login.html'>here</a>";
 }
   ?>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+</script>
 <title>Julian's Lab07 createReport</title>
 
